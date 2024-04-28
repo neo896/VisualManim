@@ -1,6 +1,13 @@
 import React from "react";
 import { Collapse, Col, Row } from "@douyinfe/semi-ui";
-import { RectangleSvg, TextSvg } from "@/components/svg/index";
+import {
+  RectangleSvg,
+  TextSvg,
+  FadeInSvg,
+  FadeOutSvg,
+  CreateSvg,
+  UnCreateSvg,
+} from "@/components/svg/index";
 
 const Mobjects = [
   {
@@ -28,13 +35,43 @@ const Mobjects = [
     ],
   },
   {
-    category: "Utils",
+    category: "Animations",
     key: "3",
+    objects: [
+      {
+        name: "FadeIn",
+        type: "fadeInNode",
+        key: "3-1",
+        icon: <FadeInSvg width="32" height="32" />,
+      },
+      {
+        name: "FadeOut",
+        type: "fadeOutNode",
+        key: "3-2",
+        icon: <FadeOutSvg width="32" height="32" />,
+      },
+      {
+        name: "Create",
+        type: "createNode",
+        key: "3-3",
+        icon: <CreateSvg width="32" height="32" />,
+      },
+      {
+        name: "UnCreate",
+        type: "unCreateNode",
+        key: "3-4",
+        icon: <UnCreateSvg width="32" height="32" />,
+      },
+    ],
+  },
+  {
+    category: "Utils",
+    key: "4",
     objects: [
       {
         name: "Text",
         type: "Text",
-        key: "2-1",
+        key: "4-1",
         icon: (
           <svg
             t="1714269373958"
