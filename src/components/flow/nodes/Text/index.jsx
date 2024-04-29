@@ -2,7 +2,7 @@ import React from "react";
 import { Handle, Position } from "reactflow";
 import { TextSvg } from "@/components/svg";
 
-const TextNode = ({ data, isConnectable }) => {
+const TextNode = () => {
   return (
     <div className="px-4 py-2 shadow-md rounded-md bg-white border-2 border-stone-400">
       <div className="flex items-center">
@@ -11,12 +11,7 @@ const TextNode = ({ data, isConnectable }) => {
         </div>
         <div className="text-gray-500 ml-2">Animation</div>
       </div>
-      <Handle
-        type="target"
-        id="animation"
-        position={Position.Right}
-        isConnectable={isConnectable}
-      />
+      <Handle type="source" id="animation" position={Position.Right} />
     </div>
   );
 };

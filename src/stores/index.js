@@ -15,7 +15,14 @@ export const onEdgesChange = (changes) => {
 }
 
 export const onConnect = (connection) => {
-    store.edges = addEdge(connection, store.edges)
+    const {source, sourceHandle, target, targetHandle} = connection
+    const edge = {
+        id: `${source}-${target}`,
+        source: source,
+        target: target,   
+        animated: sourceHandle==="animation"?true:false, 
+    }
+    store.edges = addEdge(edge, store.edges)
 }
 
 export const setNodes = (nodes) => {

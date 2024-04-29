@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
-import ReactFlow, { ReactFlowProvider, Controls } from "reactflow";
+import ReactFlow, { ReactFlowProvider, Controls, Panel } from "reactflow";
 import { useSnapshot } from "valtio";
 import {
   store,
@@ -7,17 +7,14 @@ import {
   onEdgesChange,
   onConnect,
   setNodes,
-  setEdges,
 } from "@/stores/index";
-import { RectangleNode, TextNode } from "./nodes";
+import { RectangleNode, TextNode, FadeInNode } from "./nodes";
 import "reactflow/dist/style.css";
 
-// const nodeTypesObj = {
-//   rectangleNode: RectangleNode,
-// };
 const nodes = {
   rectangleNode: RectangleNode,
   textNode: TextNode,
+  fadeInNode: FadeInNode,
 };
 
 let nodeTypes;
@@ -32,6 +29,14 @@ const Flow = () => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   }, []);
+
+  const onSave = useCallback(() => {
+    if (reactFlowInstance) {
+      const flow = reactFlowInstance.toObject();
+      console.log(JSON.stringify(flow));
+      // localStorage.setItem(flowKey, JSON.stringify(flow));
+    }
+  }, [reactFlowInstance]);
 
   const onDrop = useCallback(
     (event) => {
@@ -81,6 +86,9 @@ const Flow = () => {
         >
           {/* <Background /> */}
           <Controls />
+          <Panel position="top-right">
+            <button onClick={onSave}>save</button>
+          </Panel>
         </ReactFlow>
       </div>
     </ReactFlowProvider>
