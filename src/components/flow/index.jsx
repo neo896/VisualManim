@@ -9,6 +9,7 @@ import {
   setNodes,
 } from "@/stores/index";
 import { RectangleNode, TextNode, FadeInNode } from "./nodes";
+import { Command } from "@tauri-apps/api/shell";
 import "reactflow/dist/style.css";
 
 const nodes = {
@@ -30,12 +31,15 @@ const Flow = () => {
     event.dataTransfer.dropEffect = "move";
   }, []);
 
-  const onSave = useCallback(() => {
+  const onSave = useCallback(async () => {
     if (reactFlowInstance) {
       const flow = reactFlowInstance.toObject();
       console.log(JSON.stringify(flow));
       // localStorage.setItem(flowKey, JSON.stringify(flow));
     }
+    const command = Command.sidecar("python/python", ["--version"]);
+    const output = await command.execute();
+    console.log(output);
   }, [reactFlowInstance]);
 
   const onDrop = useCallback(

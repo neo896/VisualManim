@@ -9,8 +9,9 @@ import {
 import LeftSide from "./components/layouts/LeftSide";
 import Flow from "./components/flow";
 
+const { Header, Footer, Sider, Content } = Layout;
+
 function App() {
-  const { Header, Footer, Sider, Content } = Layout;
   const commonStyle = {
     height: 64,
     lineHeight: "64px",
