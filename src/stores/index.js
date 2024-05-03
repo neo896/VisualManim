@@ -33,3 +33,16 @@ export const setEdges = (edges) => {
     store.edges = edges
 }
 
+export const updateNodeData = (id, props) => {
+    store.nodes = store.nodes.map((node) => {
+        if (node.id === id) {
+            for (const prop in props) {
+                if (node.data.props.hasOwnProperty(prop)) {
+                    node.data.props[prop] = props[prop];
+                }
+            }
+        }
+        return node
+    })
+}
+

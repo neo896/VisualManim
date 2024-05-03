@@ -16,18 +16,7 @@
         "all": false,
         "sidecar": true,
         "open": true,
-        "scope": [
-          {
-            "name": "python/python",
-            "sidecar": true,
-            "args": ["--version"]
-          },
-          {
-            "name": "python/python",
-            "sidecar": true,
-            "args": ["-m", "venv", "manim"]
-          }
-        ]
+        "scope": []
       }
     },
     "windows": [
@@ -52,9 +41,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "externalBin": [
-        "python/python"
-      ]
+      "externalBin": []
     }
   }
 }

@@ -9,6 +9,7 @@ import {
   setNodes,
 } from "@/stores/index";
 import { RectangleNode, TextNode, FadeInNode } from "./nodes";
+import nodesProps from "./nodes/events";
 import { Command } from "@tauri-apps/api/shell";
 import "reactflow/dist/style.css";
 
@@ -37,9 +38,9 @@ const Flow = () => {
       console.log(JSON.stringify(flow));
       // localStorage.setItem(flowKey, JSON.stringify(flow));
     }
-    const command = Command.sidecar("python/python", ["--version"]);
-    const output = await command.execute();
-    console.log(output);
+    // const command = Command.sidecar("python/python", ["--version"]);
+    // const output = await command.execute();
+    // console.log(output);
   }, [reactFlowInstance]);
 
   const onDrop = useCallback(
@@ -57,15 +58,23 @@ const Flow = () => {
         [type]: nodes[type],
       };
 
+      let data = {};
+      nodesProps.forEach((node) => {
+        if (node.type === type) {
+          data.props = { ...node.props };
+          data.events = { ...node.events };
+        }
+      });
+
       const position = reactFlowInstance.screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
       });
       const newNode = {
-        id: `${type}-${Date.now()}`,
+        id: type,
         type: type,
         position,
-        data: { label: `${type} node` },
+        data,
       };
 
       setNodes(newNode);
