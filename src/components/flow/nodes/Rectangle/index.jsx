@@ -3,6 +3,7 @@ import { Handle, Position } from "reactflow";
 import { ColorPicker } from "antd";
 import { InputNumber, Divider } from "@douyinfe/semi-ui";
 import { RectangleSvg } from "@/components/svg";
+import { updateNodeData } from "@/stores/index";
 
 const RectangleNode = ({ data }) => {
   return (
@@ -20,24 +21,55 @@ const RectangleNode = ({ data }) => {
           <div>color</div>
           <ColorPicker
             value={data.props.color}
-            onChange={data.events.onColorChange}
+            onChange={(value, hex) =>
+              updateNodeData(data.props.id, { color: hex })
+            }
+            className="nodrag"
           />
         </div>
         <div className="flex items-center justify-start gap-2">
           <div>width</div>
-          <InputNumber size="small" />
+          <InputNumber
+            size="small"
+            value={data.props.width}
+            onChange={(value) =>
+              updateNodeData(data.props.id, { width: value })
+            }
+            className="nodrag"
+          />
         </div>
         <div className="flex items-center justify-start gap-2">
           <div>height</div>
-          <InputNumber size="small" />
+          <InputNumber
+            size="small"
+            value={data.props.height}
+            onChange={(value) =>
+              updateNodeData(data.props.id, { height: value })
+            }
+            className="nodrag"
+          />
         </div>
         <div className="flex items-center justify-start gap-2">
           <div>grid_xstep </div>
-          <InputNumber size="small" />
+          <InputNumber
+            size="small"
+            value={data.props.grid_xstep}
+            onChange={(value) =>
+              updateNodeData(data.props.id, { grid_xstep: value })
+            }
+            className="nodrag"
+          />
         </div>
         <div className="flex items-center justify-start gap-2">
           <div>grid_ystep </div>
-          <InputNumber size="small" />
+          <InputNumber
+            size="small"
+            value={data.props.grid_ystep}
+            onChange={(value) =>
+              updateNodeData(data.props.id, { grid_ystep: value })
+            }
+            className="nodrag"
+          />
         </div>
       </div>
       <Handle type="source" id="animation" position={Position.Right} />

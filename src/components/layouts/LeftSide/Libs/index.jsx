@@ -103,7 +103,11 @@ const Libraries = () => {
     <Collapse>
       {Mobjects.map((mobject) => {
         return (
-          <Collapse.Panel header={mobject.category} itemKey={mobject.key}>
+          <Collapse.Panel
+            header={mobject.category}
+            itemKey={mobject.key}
+            key={mobject.key}
+          >
             <Row>
               {mobject.objects.map((obj) => {
                 return (

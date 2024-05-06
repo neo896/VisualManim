@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useMemo } from "react";
 import ReactFlow, { ReactFlowProvider, Controls, Panel } from "reactflow";
 import { useSnapshot } from "valtio";
 import {
@@ -9,8 +9,9 @@ import {
   setNodes,
 } from "@/stores/index";
 import { RectangleNode, TextNode, FadeInNode } from "./nodes";
-import nodesProps from "./nodes/events";
+import nodesProps from "./nodes/data";
 import { Command } from "@tauri-apps/api/shell";
+import { v4 as uuidv4 } from "uuid";
 import "reactflow/dist/style.css";
 
 const nodes = {
@@ -62,16 +63,17 @@ const Flow = () => {
       nodesProps.forEach((node) => {
         if (node.type === type) {
           data.props = { ...node.props };
-          data.events = { ...node.events };
         }
       });
+      const uuid = uuidv4();
+      data.props.id = uuid;
 
       const position = reactFlowInstance.screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
       });
       const newNode = {
-        id: type,
+        id: uuid,
         type: type,
         position,
         data,

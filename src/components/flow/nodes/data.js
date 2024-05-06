@@ -1,4 +1,4 @@
-import { updateNodeData } from "@/stores/index";
+
 
 const nodesProps = [
     {
@@ -10,11 +10,6 @@ const nodesProps = [
             "grid_xstep": 0.0,
             "grid_ystep": 0.0
         },
-        "events": {
-            "onColorChange": (value, hex) => {
-                updateNodeData("rectangleNode", {color: hex});
-            }
-        }
     }
 ]
 
