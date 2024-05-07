@@ -8,19 +8,23 @@ import {
   onConnect,
   setNodes,
 } from "@/stores/index";
+import { IconPlay, IconSave } from "@douyinfe/semi-icons";
+import { Button } from "@douyinfe/semi-ui";
 import { RectangleNode, TextNode, FadeInNode } from "./nodes";
 import nodesProps from "./nodes/data";
+import { invoke } from "@tauri-apps/api/tauri";
 import { Command } from "@tauri-apps/api/shell";
 import { v4 as uuidv4 } from "uuid";
 import "reactflow/dist/style.css";
 
 const nodes = {
-  rectangleNode: RectangleNode,
-  textNode: TextNode,
-  fadeInNode: FadeInNode,
+  RectangleNode: RectangleNode,
+  TextNode: TextNode,
+  FadeInNode: FadeInNode,
 };
 
 let nodeTypes;
+let type;
 
 const Flow = () => {
   const snap = useSnapshot(store);
@@ -33,16 +37,27 @@ const Flow = () => {
     event.dataTransfer.dropEffect = "move";
   }, []);
 
-  const onSave = useCallback(async () => {
+  const saveScen = useCallback(async () => {
+    if (reactFlowInstance) {
+      const flow = reactFlowInstance.toObject();
+      let nodesJson = JSON.stringify(flow);
+      invoke("play_scen", { nodes_json: nodesJson });
+    }
+  }, [reactFlowInstance]);
+
+  const playScen = () => {
     if (reactFlowInstance) {
       const flow = reactFlowInstance.toObject();
       console.log(JSON.stringify(flow));
-      // localStorage.setItem(flowKey, JSON.stringify(flow));
     }
-    // const command = Command.sidecar("python/python", ["--version"]);
-    // const output = await command.execute();
-    // console.log(output);
-  }, [reactFlowInstance]);
+  };
+
+  useMemo(() => {
+    nodeTypes = {
+      ...nodes,
+      [type]: nodes[type],
+    };
+  }, []);
 
   const onDrop = useCallback(
     (event) => {
@@ -54,10 +69,10 @@ const Flow = () => {
         return;
       }
 
-      nodeTypes = {
-        ...nodes,
-        [type]: nodes[type],
-      };
+      // nodeTypes = {
+      //   ...nodes,
+      //   [type]: nodes[type],
+      // };
 
       let data = {};
       nodesProps.forEach((node) => {
@@ -66,14 +81,14 @@ const Flow = () => {
         }
       });
       const uuid = uuidv4();
-      data.props.id = uuid;
+      data.props.id = uuid.replace(/-/g, "");
 
       const position = reactFlowInstance.screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
       });
       const newNode = {
-        id: uuid,
+        id: uuid.replace(/-/g, ""),
         type: type,
         position,
         data,
@@ -102,7 +117,18 @@ const Flow = () => {
           {/* <Background /> */}
           <Controls />
           <Panel position="top-right">
-            <button onClick={onSave}>save</button>
+            <Button
+              icon={<IconSave size="extra-large" />}
+              className="bg-white"
+              onClick={saveScen}
+              type="tertiary"
+            ></Button>
+            <Button
+              icon={<IconPlay size="extra-large" />}
+              className="bg-white"
+              onClick={playScen}
+              type="tertiary"
+            ></Button>
           </Panel>
         </ReactFlow>
       </div>

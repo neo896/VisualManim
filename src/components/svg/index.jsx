@@ -53,21 +53,18 @@ export const FadeInSvg = ({ width, height }) => {
         fill="#8a8a8a"
         p-id="9692"
         data-spm-anchor-id="a313x.search_index.0.i11.1c773a814mUqLo"
-        class="selected"
       ></path>
       <path
         d="M192 160m2 0l764 0q2 0 2 2l0 92q0 2-2 2l-764 0q-2 0-2-2l0-92q0-2 2-2Z"
         fill="#e6e6e6"
         p-id="9693"
         data-spm-anchor-id="a313x.search_index.0.i13.1c773a814mUqLo"
-        class=""
       ></path>
       <path
         d="M960 160m0 2l0 596q0 2-2 2l-92 0q-2 0-2-2l0-596q0-2 2-2l92 0q2 0 2 2Z"
         fill="#e6e6e6"
         p-id="9694"
         data-spm-anchor-id="a313x.search_index.0.i12.1c773a814mUqLo"
-        class=""
       ></path>
     </svg>
   );
@@ -89,21 +86,18 @@ export const FadeOutSvg = ({ width, height }) => {
         fill="#e6e6e6"
         p-id="7093"
         data-spm-anchor-id="a313x.search_index.0.i4.1c773a814mUqLo"
-        class=""
       ></path>
       <path
         d="M192 160m2 0l764 0q2 0 2 2l0 92q0 2-2 2l-764 0q-2 0-2-2l0-92q0-2 2-2Z"
         fill="#8a8a8a"
         p-id="7094"
         data-spm-anchor-id="a313x.search_index.0.i6.1c773a814mUqLo"
-        class="selected"
       ></path>
       <path
         d="M960 160m0 2l0 596q0 2-2 2l-92 0q-2 0-2-2l0-596q0-2 2-2l92 0q2 0 2 2Z"
         fill="#8a8a8a"
         p-id="7095"
         data-spm-anchor-id="a313x.search_index.0.i5.1c773a814mUqLo"
-        class="selected"
       ></path>
     </svg>
   );

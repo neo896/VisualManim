@@ -2,22 +2,19 @@ import React from "react";
 import { Layout } from "@douyinfe/semi-ui";
 
 import LeftSide from "./components/layouts/LeftSide";
+import TopBar from "./components/layouts/Header";
 import Flow from "./components/flow";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 function App() {
-  const commonStyle = {
-    height: 64,
-    lineHeight: "64px",
-    background: "var(--semi-color-fill-0)",
-  };
-
   return (
     <Layout className="h-lvh">
-      <Header style={commonStyle}>Header</Header>
+      <Header className="h-12 border">
+        <TopBar />
+      </Header>
       <Layout>
-        <Sider className="w-1/6 border ">
+        <Sider className="w-1/6 border-r ">
           <LeftSide />
         </Sider>
         <Content>
@@ -29,7 +26,7 @@ function App() {
           属性
         </Sider>
       </Layout>
-      <Footer style={commonStyle}>Footer</Footer>
+      <Footer className="h-14 border">Footer</Footer>
     </Layout>
   );
 }

@@ -17,6 +17,11 @@
         "sidecar": true,
         "open": true,
         "scope": []
+      },
+      "fs": {
+        "scope": [
+          "$RESOURCE/scen.tpl"
+        ]
       }
     },
     "windows": [
@@ -41,7 +46,10 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "externalBin": []
+      "externalBin": [],
+      "resources": [
+        "../templates/scen.tpl"
+      ]
     }
   }
 }

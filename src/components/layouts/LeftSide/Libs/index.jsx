@@ -16,7 +16,7 @@ const Mobjects = [
     objects: [
       {
         name: "Rectangle",
-        type: "rectangleNode",
+        type: "RectangleNode",
         key: "1-1",
         icon: <RectangleSvg width="32" height="32" />,
       },
@@ -28,7 +28,7 @@ const Mobjects = [
     objects: [
       {
         name: "Text",
-        type: "textNode",
+        type: "TextNode",
         key: "2-1",
         icon: <TextSvg width="32" height="32" />,
       },
@@ -40,25 +40,25 @@ const Mobjects = [
     objects: [
       {
         name: "FadeIn",
-        type: "fadeInNode",
+        type: "FadeInNode",
         key: "3-1",
         icon: <FadeInSvg width="32" height="32" />,
       },
       {
         name: "FadeOut",
-        type: "fadeOutNode",
+        type: "FadeOutNode",
         key: "3-2",
         icon: <FadeOutSvg width="32" height="32" />,
       },
       {
         name: "Create",
-        type: "createNode",
+        type: "CreateNode",
         key: "3-3",
         icon: <CreateSvg width="32" height="32" />,
       },
       {
         name: "UnCreate",
-        type: "unCreateNode",
+        type: "UnCreateNode",
         key: "3-4",
         icon: <UnCreateSvg width="32" height="32" />,
       },
